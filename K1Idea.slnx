@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/K1Idea.API/K1Idea.API.csproj" />
+    <Project Path="src/K1Idea.Application/K1Idea.Application.csproj" />
+    <Project Path="src/K1Idea.Domain/K1Idea.Domain.csproj" />
+    <Project Path="src/K1Idea.Infrastructure/K1Idea.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/K1Idea.API.IntegrationTests/K1Idea.API.IntegrationTests.csproj" />
+    <Project Path="tests/K1Idea.Application.Tests/K1Idea.Application.Tests.csproj" />
+    <Project Path="tests/K1Idea.Domain.Tests/K1Idea.Domain.Tests.csproj" />
+  </Folder>
+</Solution>

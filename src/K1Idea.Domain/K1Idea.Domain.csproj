@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>K1Idea.Domain</RootNamespace>
+  </PropertyGroup>
+
+  <!-- Npgsql only for IUnitOfWork contract types (NpgsqlConnection/NpgsqlTransaction) -->
+  <ItemGroup>
+    <PackageReference Include="Npgsql" />
+  </ItemGroup>
+
+</Project>

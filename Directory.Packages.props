@@ -1,0 +1,38 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageFloatingVersionsEnabled>true</CentralPackageFloatingVersionsEnabled>
+  </PropertyGroup>
+
+  <!-- Application -->
+  <ItemGroup>
+    <PackageVersion Include="MediatR" Version="12.*" />
+    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.*" />
+  </ItemGroup>
+
+  <!-- Infrastructure -->
+  <ItemGroup>
+    <PackageVersion Include="Dapper" Version="2.*" />
+    <PackageVersion Include="Npgsql" Version="8.*" />
+    <PackageVersion Include="DbUp-PostgreSQL" Version="5.*" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.*" />
+    <PackageVersion Include="BCrypt.Net-Next" Version="4.*" />
+  </ItemGroup>
+
+  <!-- API -->
+  <ItemGroup>
+    <PackageVersion Include="HotChocolate.AspNetCore" Version="14.*" />
+    <PackageVersion Include="HotChocolate.AspNetCore.Authorization" Version="14.*" />
+  </ItemGroup>
+
+  <!-- Tests -->
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageVersion Include="xunit" Version="2.*" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.*" />
+    <PackageVersion Include="FluentAssertions" Version="6.*" />
+    <PackageVersion Include="NSubstitute" Version="5.*" />
+    <PackageVersion Include="Testcontainers.PostgreSql" Version="3.*" />
+    <PackageVersion Include="coverlet.collector" Version="6.*" />
+  </ItemGroup>
+</Project>
