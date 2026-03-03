@@ -44,6 +44,11 @@ builder.Services
     .AddQueryType()
     .AddMutationType()
     .AddSubscriptionType()
+    .AddTypeExtension<K1Idea.API.GraphQL.Types.TicketGqlType>()
+    .AddTypeExtension<K1Idea.API.GraphQL.Types.CommentGqlType>()
+    .AddDataLoader<K1Idea.API.GraphQL.UserByIdDataLoader>()
+    .AddDataLoader<K1Idea.API.GraphQL.BusinessUnitByIdDataLoader>()
+    .AddDataLoader<K1Idea.API.GraphQL.TicketByIdDataLoader>()
     .AddInMemorySubscriptions()
     .AddErrorFilter<GraphQLErrorFilter>();
 
