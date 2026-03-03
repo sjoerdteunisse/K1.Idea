@@ -1,0 +1,25 @@
+# Worktrees
+.worktrees/
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.DotSettings.user
+
+# Rider / JetBrains
+.idea/
+
+# Environment
+.env
+.env.local
+*.env
+
+# Docker volumes
+pgdata/
+
+# OS
+.DS_Store
+Thumbs.db
