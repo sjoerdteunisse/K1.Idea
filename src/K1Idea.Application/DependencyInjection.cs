@@ -21,6 +21,7 @@ public static class DependencyInjection
         services.AddScoped<TenantContext>();
         services.AddScoped<OrgContext>();
 
+
         return services;
     }
 }
