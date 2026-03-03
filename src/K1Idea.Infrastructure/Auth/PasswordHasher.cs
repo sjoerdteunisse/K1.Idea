@@ -1,6 +1,8 @@
+using K1Idea.Application.Common.Interfaces;
+
 namespace K1Idea.Infrastructure.Auth;
 
-public sealed class PasswordHasher
+public sealed class PasswordHasher : IPasswordHasher
 {
     public string Hash(string password) =>
         BCrypt.Net.BCrypt.HashPassword(password, workFactor: 12);

@@ -1,4 +1,5 @@
 using Dapper;
+using K1Idea.Application.Common.Interfaces;
 using K1Idea.Domain.Interfaces;
 using K1Idea.Infrastructure.Auth;
 using K1Idea.Infrastructure.Data;
@@ -41,8 +42,8 @@ public static class DependencyInjection
         services.AddScoped<IBusinessUnitRepository, BusinessUnitRepository>();
 
         services.AddSingleton<IClock, SystemClock>();
-        services.AddSingleton<JwtService>();
-        services.AddSingleton<PasswordHasher>();
+        services.AddSingleton<IJwtService, JwtService>();
+        services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
         return services;
     }

@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using K1Idea.Application.Common.Interfaces;
 using K1Idea.Domain.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 
@@ -14,7 +15,7 @@ public sealed class JwtSettings
     public required string Audience { get; init; }
 }
 
-public sealed class JwtService(JwtSettings settings, IClock clock)
+public sealed class JwtService(JwtSettings settings, IClock clock) : IJwtService
 {
     private static readonly TimeSpan AccessTokenTtl = TimeSpan.FromMinutes(15);
     private static readonly TimeSpan RefreshTokenTtl = TimeSpan.FromDays(7);
