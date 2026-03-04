@@ -1,6 +1,5 @@
 using HotChocolate;
 using HotChocolate.Types;
-using K1Idea.Application.Common.Pagination;
 using K1Idea.Domain.Entities;
 
 namespace K1Idea.API.GraphQL.Types;
