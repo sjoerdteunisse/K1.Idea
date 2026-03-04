@@ -40,10 +40,10 @@ builder.Services.AddAuthorization();
 builder.Services
     .AddGraphQLServer()
     .AddAuthorization()
-    .AddMutationConventions()
     .AddQueryType()
     .AddMutationType()
     .AddSubscriptionType()
+    .AddType<K1Idea.API.GraphQL.Types.UserGqlType>()
     .AddTypeExtension<K1Idea.API.GraphQL.Types.TicketGqlType>()
     .AddTypeExtension<K1Idea.API.GraphQL.Types.CommentGqlType>()
     .AddDataLoader<K1Idea.API.GraphQL.UserByIdDataLoader>()

@@ -5,11 +5,6 @@ namespace K1Idea.API.Middleware;
 
 public sealed class TenantOrgContextMiddleware(RequestDelegate next)
 {
-    private static readonly HashSet<string> PublicOperations = new(StringComparer.OrdinalIgnoreCase)
-    {
-        "register", "login", "refreshToken"
-    };
-
     public async Task InvokeAsync(HttpContext context, TenantContext tenantCtx, OrgContext orgCtx)
     {
         if (context.User.Identity?.IsAuthenticated == true)
