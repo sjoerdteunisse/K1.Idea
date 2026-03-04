@@ -1,5 +1,10 @@
 using System.Text;
+using K1Idea.API.GraphQL;
 using K1Idea.API.GraphQL.Errors;
+using K1Idea.API.GraphQL.Mutations;
+using K1Idea.API.GraphQL.Queries;
+using K1Idea.API.GraphQL.Subscriptions;
+using K1Idea.API.GraphQL.Types;
 using K1Idea.API.Middleware;
 using K1Idea.Application;
 using K1Idea.Infrastructure;
@@ -40,15 +45,24 @@ builder.Services.AddAuthorization();
 builder.Services
     .AddGraphQLServer()
     .AddAuthorization()
+    // Root types (empty shells — slices add the fields via [QueryType]/[MutationType]/[SubscriptionType])
     .AddQueryType()
+    .AddType(typeof(TicketQueries))
+    .AddType(typeof(CommentQueries))
+    .AddType(typeof(OrgQueries))
     .AddMutationType()
+    .AddType(typeof(AuthMutations))
+    .AddType(typeof(TicketMutations))
+    .AddType(typeof(CommentMutations))
     .AddSubscriptionType()
-    .AddType<K1Idea.API.GraphQL.Types.UserGqlType>()
-    .AddTypeExtension<K1Idea.API.GraphQL.Types.TicketGqlType>()
-    .AddTypeExtension<K1Idea.API.GraphQL.Types.CommentGqlType>()
-    .AddDataLoader<K1Idea.API.GraphQL.UserByIdDataLoader>()
-    .AddDataLoader<K1Idea.API.GraphQL.BusinessUnitByIdDataLoader>()
-    .AddDataLoader<K1Idea.API.GraphQL.TicketByIdDataLoader>()
+    .AddType(typeof(CommentSubscriptions))
+    // Non-root type extensions
+    .AddTypeExtension<TicketGqlType>()
+    .AddTypeExtension<CommentGqlType>()
+    // DataLoaders
+    .AddDataLoader<UserByIdDataLoader>()
+    .AddDataLoader<BusinessUnitByIdDataLoader>()
+    .AddDataLoader<TicketByIdDataLoader>()
     .AddInMemorySubscriptions()
     .AddErrorFilter<GraphQLErrorFilter>();
 
