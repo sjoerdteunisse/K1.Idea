@@ -2,6 +2,7 @@ using K1Idea.Application.Common.Pagination;
 using K1Idea.Application.Tickets.DTOs;
 using K1Idea.Application.Tickets.Queries;
 using K1Idea.Domain.Entities;
+using K1Idea.Domain.Enums;
 using MediatR;
 
 namespace K1Idea.API.GraphQL.Queries;
@@ -25,7 +26,7 @@ public static class TicketQueries
     {
         var filter = where is null
             ? null
-            : new TicketFilter(where.Type, where.Status, where.Priority,
+            : new TicketFilter(where.Type?.ToString(), where.Status?.ToString(), where.Priority?.ToString(),
                 where.OwnerBusinessUnitId, where.AssigneeId, where.Text);
 
         var sort = order is null
@@ -37,9 +38,9 @@ public static class TicketQueries
 }
 
 public sealed record TicketFilterInput(
-    string? Type,
-    string? Status,
-    string? Priority,
+    TicketType? Type,
+    TicketStatus? Status,
+    TicketPriority? Priority,
     Guid? OwnerBusinessUnitId,
     Guid? AssigneeId,
     string? Text);
