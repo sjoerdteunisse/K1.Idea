@@ -50,6 +50,7 @@ builder.Services
     .AddType(typeof(TicketQueries))
     .AddType(typeof(CommentQueries))
     .AddType(typeof(OrgQueries))
+    .AddType(typeof(MeQuery))
     .AddMutationType()
     .AddType(typeof(AuthMutations))
     .AddType(typeof(TicketMutations))
@@ -59,6 +60,11 @@ builder.Services
     // Non-root type extensions
     .AddTypeExtension<TicketGqlType>()
     .AddTypeExtension<CommentGqlType>()
+    .AddTypeExtension<UserRoleExtension>()
+    // Object type configurations (hide internal fields)
+    .AddType<OrgGqlType>()
+    .AddType<BusinessUnitGqlType>()
+    .AddType<UserGqlType>()
     // DataLoaders
     .AddDataLoader<UserByIdDataLoader>()
     .AddDataLoader<BusinessUnitByIdDataLoader>()

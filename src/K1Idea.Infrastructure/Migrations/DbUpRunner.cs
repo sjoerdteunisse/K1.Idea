@@ -13,6 +13,7 @@ public static class DbUpRunner
             .WithScriptsEmbeddedInAssembly(typeof(DbUpRunner).Assembly,
                 s => s.Contains("Scripts"))
             .WithTransactionPerScript()
+            .WithVariablesDisabled()
             .LogToConsole()
             .Build();
 

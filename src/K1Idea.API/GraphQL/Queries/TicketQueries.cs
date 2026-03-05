@@ -1,8 +1,8 @@
+using K1Idea.API.GraphQL.Types;
 using K1Idea.Application.Common.Pagination;
 using K1Idea.Application.Tickets.DTOs;
 using K1Idea.Application.Tickets.Queries;
 using K1Idea.Domain.Entities;
-using K1Idea.Domain.Enums;
 using MediatR;
 
 namespace K1Idea.API.GraphQL.Queries;
@@ -31,18 +31,15 @@ public static class TicketQueries
 
         var sort = order is null
             ? null
-            : new TicketSort(order.Field ?? "created_at", order.Direction ?? "DESC");
+            : new TicketSort(
+                order.Field switch
+                {
+                    TicketSortField.UpdatedAt => "updated_at",
+                    TicketSortField.Priority => "priority",
+                    _ => "created_at",
+                },
+                order.Direction == SortDirection.Desc ? "DESC" : "ASC");
 
         return mediator.Send(new ListTicketsQuery(first, after, filter, sort), ct);
     }
 }
-
-public sealed record TicketFilterInput(
-    TicketType? Type,
-    TicketStatus? Status,
-    TicketPriority? Priority,
-    Guid? OwnerBusinessUnitId,
-    Guid? AssigneeId,
-    string? Text);
-
-public sealed record TicketSortInput(string? Field, string? Direction);

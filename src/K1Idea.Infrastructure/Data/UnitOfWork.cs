@@ -14,13 +14,27 @@ public sealed class UnitOfWork : IUnitOfWork
         _factory = factory;
     }
 
-    public NpgsqlConnection Connection => _connection ?? throw new InvalidOperationException("Connection not opened.");
+    public NpgsqlConnection Connection
+    {
+        get
+        {
+            if (_connection is null)
+            {
+                _connection = _factory.Create();
+                _connection.Open();
+            }
+            return _connection;
+        }
+    }
     public NpgsqlTransaction? Transaction => _transaction;
 
     public async Task BeginAsync(CancellationToken ct)
     {
-        _connection = _factory.Create();
-        await _connection.OpenAsync(ct).ConfigureAwait(false);
+        if (_connection is null)
+        {
+            _connection = _factory.Create();
+            await _connection.OpenAsync(ct).ConfigureAwait(false);
+        }
         _transaction = await _connection.BeginTransactionAsync(ct).ConfigureAwait(false);
     }
 
